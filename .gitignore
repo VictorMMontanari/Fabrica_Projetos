@@ -1,3 +1,15 @@
-.fabrica_projetos.egg-info
-*__pycache__/
-.env/
+# Ignora o virtualenv
+env/
+.venv/
+venv/
+fabrica_projetos.egg-info/
+
+# Cache do Python
+__pycache__/
+*.py[cod]
+
+# Metadados do setuptools
+*.egg-info/
+
+# Outros
+*.log
