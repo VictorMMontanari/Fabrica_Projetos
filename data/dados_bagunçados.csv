@@ -1,0 +1,7 @@
+id,Nome,Idade,Telefone,Email,Endereco
+1,João,25,123456789,edsad@gmail.com,"Rua A 477 marilia"
+2,Maria,30,987654321,dasda@hotmail.com,"Rua B 123 são paulo"
+3,25,Lucas,"+55 11 91234-5678","Rua C 456 rio de janeiro",lucas@email.com
+4,"Rua D 789 belo horizonte",40,paulo@empresa.com,876543210,Paulo
+5,987654321,35,"Rua E 321 curitiba",carla@site.com,Carla
+6,maria@outro.com,28,987123456,"Rua F 654 porto alegre","Maria"
