@@ -1,4 +1,7 @@
+
 import streamlit as st
+# --- Verifica autenticação ---
+
 
 st.header("Documentation")
 st.write(

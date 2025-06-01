@@ -4,6 +4,9 @@ from pathlib import Path
 import streamlit as st
 import os
 import pandas as pd
+import time
+
+
 # Adiciona o diretório src ao PYTHONPATH
 sys.path.append(str(Path(__file__).parent.parent / "src"))
 sys.path.append(str(Path(__file__).parent.parent))
@@ -24,6 +27,13 @@ df = None  # Variável global para guardar o último DataFrame
 ds = None
 
 with st.container():
+
+    if "executar_modelo" not in st.session_state:
+        st.session_state.executar_modelo = False
+
+    if "executado" not in st.session_state:
+        st.session_state.executado = False
+
     col1, col2= st.columns(2)
     with col1:
         uploaded_files = st.file_uploader(
@@ -48,24 +58,16 @@ with st.container():
             df = pd.read_csv(uploaded_file)
             print(df)
     with col2:
-        st.markdown("""
-        <style>
-            .st-emotion-cache-u4v75y{
-                margin-top: 12px;
-                background-color: rgb(38, 39, 48);
-                border-color: rgb(38, 39, 48);
-                padding: 18px 16px 18px 16px;
-            }
-        </style>
-    """, unsafe_allow_html=True)
         with st.container(border=True): 
             if st.button("Executar"):
+                st.session_state.executar_modelo = True
                 if input_path is not None:
                     st.write("Executando o modelo...")
                     success, output_file = run_data_correction(input_path, model_path)
                     if success:
                         st.success(f"Dados corrigidos salvos em: {output_file}")
                         ds = pd.read_csv(output_file)
+                        st.session_state.executado = False
                     else:
                         st.error("Erro durante a correção dos dados.")
                 else:
@@ -74,19 +76,62 @@ with st.container():
     st.write("This is inside the container")
     col1, col2, col3 = st.columns([3, 1, 3])
     
+    # Definir altura máxima para as tabelas (em pixels)
+    table_height = "400px"
+    table_width = "900px"
+    
     with col1:
         st.markdown("<h2 style='text-align: center'>Tabela de entrada</h2>", unsafe_allow_html=True)
         if df is not None:
-            st.table(df)
+            st.markdown(
+                f"""
+                <div style='height: {table_height}; max-width: {table_width}; overflow-y: auto; border: 1px solid #ccc; border-radius: 5px;'>
+                    {df.to_html()}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
         else:
             st.info("Nenhum CSV carregado.")
 
     with col2:
-        st.markdown("<h2 style='text-align: center'>Carregando</h2>", unsafe_allow_html=True)
+        #st.markdown("<h2 style='text-align: center'>Carregando</h2>", unsafe_allow_html=True)
+        if st.session_state.executar_modelo and not st.session_state.executado:
+            with st.spinner("Executando o modelo..."):
+                time.sleep(5)  # Aqui entraria sua função real
+                st.session_state.executado = True
+                st.session_state.executar_modelo = False  # Reseta a flag após execução
+            st.success("Processamento finalizado com sucesso!")
+
+        elif st.session_state.executado:
+            st.info("O modelo já foi executado. Você pode rodar novamente se quiser.")
 
     with col3:
         st.markdown("<h2 style='text-align: center'>Tabela de saída</h2>", unsafe_allow_html=True)
         if ds is not None:
-            st.table(ds)
+            st.markdown(
+                f"""
+                <div style='height: {table_height}; max-width: {table_width};overflow-y: auto; border: 1px solid #ccc; border-radius: 5px;'>
+                    {ds.to_html()}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
         else:
             st.info("Nenhum CSV carregado.")
+
+st.markdown("""
+        <style>
+            .st-emotion-cache-u4v75y{
+                    margin-top: 29px;
+                    background-color: rgb(38, 39, 48);
+                    border-color: rgb(38, 39, 48);
+                    padding: 18px 16px 18px 16px;
+                }
+            .st-emotion-cache-1ikixyd {
+                   display: flex;
+                   align-items: center;
+                   justify-content: center;
+            }         
+        </style>
+    """, unsafe_allow_html=True)
