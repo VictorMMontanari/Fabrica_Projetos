@@ -193,7 +193,7 @@ def run_data_correction(input_path, model_path):
         df_corrigido = df_corrigido[colunas_saida]
         
         # 4. Definir caminho fixo para saída
-        output_dir = Path("/home/victor/workspace/Fabrica_Projetos/data/output")
+        output_dir = Path("data/output")
         output_dir.mkdir(parents=True, exist_ok=True)  # Cria a pasta se não existir
         
         # Mantém o nome do arquivo original (ou usa um padrão, como "dados_corrigidos.csv")

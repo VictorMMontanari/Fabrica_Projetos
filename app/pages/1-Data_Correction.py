@@ -15,7 +15,7 @@ from src.data_correction import run_data_correction
 from src.create_model import create_model
 
 input_path = None
-model_path = '/home/victor/workspace/Fabrica_Projetos/models/modelo_classificador_completo.joblib'
+model_path = 'models/modelo_classificador_completo.joblib'
 
 # run_data_correction(input_path, model_path)
 st.set_page_config(layout="wide") 
@@ -40,7 +40,7 @@ with st.container():
             "Choose a CSV file", accept_multiple_files=True, type=["csv"]
         )
         
-        input_dir = "/home/victor/workspace/Fabrica_Projetos/data/input/"
+        input_dir = "data/input/"
         os.makedirs(input_dir, exist_ok=True)  # Garante que o diretório exista
 
         for uploaded_file in uploaded_files:

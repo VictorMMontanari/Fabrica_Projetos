@@ -58,7 +58,7 @@ from sklearn.metrics import classification_report
 def create_model():
     
     # 1. Carregar dados de treino
-    df = pd.read_csv("/home/victor/workspace/Fabrica_Projetos/data/dataset_treino_br.csv")
+    df = pd.read_csv("data/dataset_treino_br.csv")
 
     # 2. Verificar balanceamento
     print("Distribuição original:")
