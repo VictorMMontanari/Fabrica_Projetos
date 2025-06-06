@@ -32,25 +32,19 @@ Utilizando algoritmos de **machine learning**, a ferramenta identifica padrões,
 
 ### 📍 Tela Inicial da Interface
 
-> _(Insira aqui o print da tela inicial do Streamlit)_
-
-![Tela Inicial](#)
+![Tela Inicial](https://raw.githubusercontent.com/VictorMMontanari/Fabrica_Projetos/refs/heads/main/utils/assets/tela_in.png)
 
 ---
 
 ### 🧠 Execução do Modelo IA
 
-> _(Insira aqui o print da IA reorganizando colunas ou output do modelo)_
-
-![Correção de Dados](#)
+![Correção de Dados](https://raw.githubusercontent.com/VictorMMontanari/Fabrica_Projetos/refs/heads/main/utils/assets/Tela_IA.png)
 
 ---
 
 ### 🗃️ Envio ao MySQL
 
-> _(Insira aqui o print do botão ou mensagem de sucesso após enviar ao banco)_
-
-![MySQL Integração](#)
+![MySQL Integração](https://raw.githubusercontent.com/VictorMMontanari/Fabrica_Projetos/refs/heads/main/utils/assets/tela_mysql.png)
 
 ---
 
